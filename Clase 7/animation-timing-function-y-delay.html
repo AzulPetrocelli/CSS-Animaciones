@@ -23,6 +23,7 @@
       display: grid;
       place-items: center ;
       box-sizing: border-box;
+      counter-reset: score;
     }
     .phone {
       position: relative;
@@ -33,6 +34,39 @@
       background: var(--sky-color);
       box-shadow: 0 19px 38px rgb(0, 0, 0, 0.30), 0 15px 12px rgb(0, 0, 0, 0.22);
     }
+
+    /*Contador*/
+    .phone h1 {
+      text-align: center;
+      color: var(--pikachu-color);
+      font-size: 18px;
+      font-weight: bold;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 5px 0 0;
+    }
+    .score-container {
+      display: flex;
+      justify-content: center;
+      color: var(--pikachu-color);
+    }
+    input[type="checkbox"] {
+      appearance: none;
+      cursor: pointer;
+      height: 70px;
+      width: 70px;
+      position: relative;
+      top: 0;
+      margin: 0;
+      z-index: 2;
+    }
+    input:checked {
+      counter-increment: score;
+    }
+    .score::after {
+      content: counter(score);
+    }
+
+    /*Partes y animaciones del Pikachu*/
     .outer-ear {
       background-color: var(--pikachu-color);
       height: 80px;
@@ -143,6 +177,19 @@
       top: 17px;
       right: 4px;
     }
+    @keyframes layer {
+      0% {
+        top: 230px;
+      }
+      50% {
+        top: 110px;
+      }
+      100% {
+        top: 230px;
+      }
+    }
+
+    /*Pikachu(layer: 1,2,4 y 6) Montañas(layer: 3,5 y 7) nubes(layer: 8 y 9)*/
     .layer-1 {
       position: absolute;
       z-index: 1;
@@ -157,27 +204,6 @@
       animation-duration: 1s;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
-    }
-    @keyframes layer {
-      0% {
-        top: 230px;
-      }
-      50% {
-        top: 110px;
-      }
-      100% {
-        top: 230px;
-      }
-    }
-    .layer-1 input[type=checkbox] {
-      appearance: none;
-      cursor: pointer;
-      height: 70px;
-      width: 70px;
-      position: relative;
-      top: 0;
-      margin: 0;
-      z-index: 2;
     }
     .layer-2 {
       position: absolute;
@@ -257,7 +283,34 @@
       bottom: 0;
       margin: 0 auto;
       width: 150px;
-      height: 100px;
+      height: 50px;
+      background-color: var(--grass-color);
+    }
+    .layer-8 .bush--left {
+      position: absolute;
+      left: -5px;
+      top: -40px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--grass-color);
+    }
+     .layer-8 .bush--middle {
+      position: absolute;
+      left: 40px;
+      top: -65px;
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      background-color: var(--grass-color);
+    }
+     .layer-8 .bush--right {
+      position: absolute;
+      right: -5px;
+      top: -45px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
       background-color: var(--grass-color);
     }
     .layer-9 {
@@ -266,7 +319,25 @@
       left: 0;
       bottom: 0;
       width: 100px;
-      height: 100px;
+      height: 50px;
+      background-color: var(--cloudy-color);
+    }
+    .layer-9 .cloudy--left {
+      position: absolute;
+      top: -50px;
+      left: 0;
+      width: 80px;
+      height: 90px;
+      border-radius: 50%;
+      background-color: var(--cloudy-color);
+    }
+    .layer-9 .cloudy--right {
+      position: absolute;
+      top: -10px;
+      left: 63px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
       background-color: var(--cloudy-color);
     }
     .layer-10 {
@@ -275,7 +346,25 @@
       right: 0;
       bottom: 0;
       width: 100px;
-      height: 100px;
+      height: 50px;
+      background-color: var(--cloudy-color);
+    }
+    .layer-10 .cloudy--left {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      width: 80px;
+      height: 90px;
+      border-radius: 50%;
+      background-color: var(--cloudy-color);
+    }
+    .layer-10 .cloudy--right {
+      position: absolute;
+      top: -10px;
+      right: 63px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
       background-color: var(--cloudy-color);
     }
   </style>
@@ -353,13 +442,29 @@
     <div class="layer-7"></div>
     
     <!-- Bush -->
-    <div class="layer-8"></div>
+    <div class="layer-8">
+      <div class="bush--left"></div>
+      <div class="bush--middle"></div>
+      <div class="bush--right"></div>
+    </div>
     
     <!-- cloudy left -->
-    <div class="layer-9"></div>
+    <div class="layer-9">
+      <div class="cloudy--left"></div>
+      <div class="cloudy--right"></div>
+    </div>
     
     <!-- cloudy right -->
-    <div class="layer-10"></div>
+    <div class="layer-10">
+      <div class="cloudy--left"></div>
+      <div class="cloudy--right"></div>
+    </div>
+
+    <!-- Counter -->
+    <h1>PikachuLand</h1>
+    <div class="score-container">
+      <p class="score">Score: </p>
+    </div>
   </div>
 </body>
 </html>
