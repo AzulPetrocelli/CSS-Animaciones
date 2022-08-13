@@ -33,6 +33,7 @@
       width: 300px;
       background: var(--sky-color);
       box-shadow: 0 19px 38px rgb(0, 0, 0, 0.30), 0 15px 12px rgb(0, 0, 0, 0.22);
+      overflow: hidden;
     }
 
     /*Contador*/
@@ -116,20 +117,6 @@
       animation-duration: 1.5s;
       animation-iteration-count: infinite;
     }
-    @keyframes blink {
-      0% {
-        transform: translate(0px, 2px);
-        height: 10px;
-      }
-      10%{
-        transform: translate(0px, 2px);
-        height: 5px;
-      }
-      15% {
-        transform: translate(0px, 5px);
-        height: 1px;
-      }
-    }
     .head__eye--left {
       position: absolute;
       top: 1px;
@@ -177,51 +164,63 @@
       top: 17px;
       right: 4px;
     }
+    @keyframes blink {
+      0% {
+        transform: scaleY(1)
+      }
+      5%{
+        transform: scaleY(0.5)
+      }
+      10% {
+        transform: scaleY(0.1)
+      }
+    }
     @keyframes layer-1 {
       0% {
-        top: 230px;
+        top: 250px;
       }
       50% {
-        top: 110px;
+        top: 130px;
       }
       100% {
-        top: 230px;
+        top: 250px;
       }
     }
     @keyframes layer-4 {
       0% {
-        top: 215px;
+        top: 235px;
       }
       50% {
-        top: 315px;
+        top: 355px;
       }
       100% {
-        top: 215px;
+        top: 235px;
       }
     }
     @keyframes layer-6 {
       0% {
-        bottom: 185px;
+        bottom: 165px;
       }
       50% {
-        bottom: 85px;
+        bottom: 55px;
       }
       100% {
-        bottom: 185px;
+        bottom: 165px;
       }
     }
 
     /*Pikachu(layer: 1,2,4 y 6) Montañas(layer: 3,5 y 7) nubes(layer: 8 y 9)*/
+    .pikachu--body {
+      height: 100px;
+      width: 70px;
+      border-radius: 50%;
+      background-color: var(--pikachu-color);
+    }
     .layer-1 {
       position: absolute;
       z-index: 1;
-      height: 100px;
-      width: 70px;
-      background-color: var(--pikachu-color);
       top: 110px;
       right: 60px;
-      border-radius: 50%;
-
       /*esto*/
       animation: layer-1 0.8s linear infinite;
     
@@ -235,12 +234,8 @@
     .layer-2 {
       position: absolute;
       z-index: 2;
-      height: 100px;
-      width: 70px;
-      background-color: var(--pikachu-color);
       top: 110px;
       left: 60px;
-      border-radius: 50%;
       animation: layer-1 0.7s linear infinite;
     }
     .layer-3 {
@@ -255,19 +250,24 @@
       background-color: var(--earth-color);
       box-shadow: 0 0 6px rgb(99, 39, 39);
       border-radius: 20px;
-      border-top: #65A166 solid 30px;
+      overflow: hidden;
+    }
+    .grass {
+      background-color: var(--grass-color);
+      height: 30px;
+      width: 100%;
+      opacity: 1;
+      background: linear-gradient(-225deg, var(--grass-color) 50%, transparent 25%) 50px 0,
+      linear-gradient(225deg, var(--grass-color) 50%, transparent 25%) 100px 0;
+      background-position:  10px 0, 10px 0, 0 0, 0 0;
+      background-size: 30px 30px;
+      background-repeat: repeat;
     }
     .layer-4 {
       position: absolute;
       z-index: 4;
-      background-color: var(--pikachu-color);
-      height: 100px;
-      width: 70px;
       top: 215px;
-      bottom: 0;
       left: 15px;
-      border-radius: 50%;
-      background-color: var(--pikachu-color);
       animation: layer-4 0.6s linear infinite;
     }
     .layer-5 {
@@ -280,17 +280,13 @@
       background-color: var(--earth-color);
       box-shadow: 0 0 6px rgb(99, 39, 39);
       border-radius: 20px;
-      border-top: #65A166 solid 30px;
+      overflow: hidden;
     }
     .layer-6 {
       position: absolute;
       z-index: 6;
-      height: 100px;
-      width: 70px;
-      background-color: var(--pikachu-color);
       bottom: 185px;
       right: 30px;
-      border-radius: 50%;
       animation: layer-6 1s linear infinite;
     }
     .layer-7 {
@@ -303,7 +299,7 @@
       background-color: var(--earth-color);
       box-shadow: 0 0 6px rgb(99, 39, 39);
       border-radius: 20px;
-      border-top: #65A166 solid 30px;
+      overflow: hidden;
     }
     .layer-8 {
       position: absolute;
@@ -402,7 +398,7 @@
 <body>
   <div class="phone">
     <!-- pikachu 1 -->
-    <div class="layer-1">
+    <div class="layer-1 pikachu--body">
       <input type="checkbox">
       <div class="left-ear outer-ear"></div>
       <div class="left-ear inner-ear"></div>
@@ -418,7 +414,7 @@
     </div>
 
     <!-- pikachu 2 -->
-    <div class="layer-2">
+    <div class="layer-2 pikachu--body">
       <input type="checkbox">
       <div class="left-ear outer-ear"></div>
       <div class="left-ear inner-ear"></div>
@@ -434,10 +430,12 @@
     </div>
     
     <!-- mountain 1 -->
-    <div class="layer-3"></div>
+    <div class="layer-3">
+      <div class="grass"></div>
+    </div>
     
     <!-- pikachu 3 -->
-    <div class="layer-4">
+    <div class="layer-4 pikachu--body">
       <input type="checkbox">
       <div class="left-ear outer-ear"></div>
       <div class="left-ear inner-ear"></div>
@@ -453,10 +451,12 @@
     </div>
     
     <!-- mountain 2 -->
-    <div class="layer-5"></div>
+    <div class="layer-5">
+      <div class="grass"></div>
+    </div>
     
     <!-- pikachu 4 -->
-    <div class="layer-6">
+    <div class="layer-6 pikachu--body">
       <input type="checkbox">
       <div class="left-ear outer-ear"></div>
       <div class="left-ear inner-ear"></div>
@@ -472,7 +472,9 @@
     </div>
     
     <!-- mountain 3 -->
-    <div class="layer-7"></div>
+    <div class="layer-7">
+      <div class="grass"></div>
+    </div>
     
     <!-- Bush -->
     <div class="layer-8">
